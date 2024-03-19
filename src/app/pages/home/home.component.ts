@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  searchControl: FormControl = new FormControl('', Validators.required)
 
+  ngOnInit(): void {
+    
+  }
+
+  searchWeather(): void {
+    console.log()
+  }
 }
