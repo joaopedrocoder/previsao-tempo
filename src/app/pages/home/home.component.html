@@ -7,7 +7,7 @@
         <button 
           type="submit" 
           class="btn btn-dark"
-          [disabled]="searchControl.valid"
+          [disabled]="!searchControl.valid"
           (click)="searchWeather()"
         >
           Pesquisar
