@@ -1,0 +1,17 @@
+.sidebar {
+  height: 91vh;
+
+  a {
+    text-decoration: none;
+    color: #333;
+    transition: 0.3;
+  }
+  
+  a:hover {
+    color: black;
+  }
+}
+
+.active {
+  font-weight: bold;
+}
