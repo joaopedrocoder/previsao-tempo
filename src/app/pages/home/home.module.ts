@@ -6,6 +6,8 @@ import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { homeReducer } from './state/home.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from './state/home.effect';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { homeReducer } from './state/home.reducer';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('home', homeReducer)
+    StoreModule.forFeature('home', homeReducer),
+    EffectsModule.forFeature([HomeEffects])
   ]
 })
 export class HomeModule { }
