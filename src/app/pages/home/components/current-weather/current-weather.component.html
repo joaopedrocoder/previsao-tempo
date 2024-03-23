@@ -1,0 +1,17 @@
+<div *ngIf="cityWeather?.city?.name" class="card" style="width: 20rem;">
+  <div class="card-header">
+    <span class="city-name">{{cityName}}</span>
+    <span 
+      [ngClass]="isFavorite ? 'icon-star-active':'icon-star-desactive'" 
+      [title]="title" 
+      (click)="onToggleBookmark()"
+    >
+      <fa-icon [icon]="faStar"></fa-icon> 
+    </span>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span>Temperatura</span> <span>{{cityWeather?.weather?.temp}}K</span></li>
+    <li class="list-group-item"><span>Sensação Térmica</span> <span>{{cityWeather?.weather?.feelsLike}}K</span></li>
+    <li class="list-group-item"><span>Humidade Relativa do ar</span> <span>{{cityWeather?.weather?.humidity}}%</span></li>
+</ul>
+</div>
