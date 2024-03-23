@@ -1,0 +1,24 @@
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+
+.city-name {
+  font-weight: bold;
+}
+
+.icon-star-active {
+  cursor: pointer;
+  color: rgb(224, 224, 14);
+}
+
+.icon-star-desactive {
+  cursor: pointer;
+  color: rgb(158, 158, 84);
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}

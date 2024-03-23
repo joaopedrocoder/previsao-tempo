@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="search-container">
     <div class="form-group">
-      <label for="">{{city}}</label>
+      <label for="">Pesquisar</label>
       <div class="input-container">
         <input type="text" class="form-control" [formControl]="searchControl">
         <button 
@@ -17,6 +17,21 @@
 
     <div class="form-group">
       <label for="">Pesquisar com <i>autocomplete</i></label>
+    </div>
+  </div>
+
+  <div class="pt-3">
+    <app-loader *ngIf="loading$ | async"></app-loader>
+
+    <div *ngIf="!(loading$ | async) && !(error$ | async)"> 
+      <app-current-weather 
+        [cityWeather]="cityWeather"
+        (toggleBookmark)="onToggleBookmark()"
+      ></app-current-weather>
+    </div>
+
+    <div *ngIf="!(loading$ | async) && (error$ | async)">
+      <a href="#">Tentar Novamente</a>
     </div>
   </div>
 </div>
