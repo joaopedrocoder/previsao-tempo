@@ -1,5 +1,6 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createAction, createFeatureSelector, createSelector, props } from "@ngrx/store";
 import { HomeState } from "./home.reducer";
+import { Bookmark } from "../../../shared/models/bookmark.model";
 
 export const selectHomeState = createFeatureSelector<HomeState>('home')
 
@@ -16,4 +17,9 @@ export const selectCurrentWeatherLoading = createSelector(
 export const selectCurrentWeatherError = createSelector(
   selectHomeState,
   (homeState: HomeState) => homeState.error
+)
+
+export const selectClearHomeState = createSelector(
+  selectHomeState,
+  (homeState: HomeState) => homeState
 )
