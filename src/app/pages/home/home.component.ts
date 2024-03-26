@@ -49,6 +49,7 @@ export class HomeComponent {
   ngOnDestroy(): void {
     this.componentDestroyed$.next(null)
     this.componentDestroyed$.unsubscribe()
+    this.store.dispatch(fromHomeActions.clearHomeState())
   }
 
   searchWeather(): void {
@@ -63,5 +64,7 @@ export class HomeComponent {
     bookmark.name = this.cityWeather?.city.name
     bookmark.country = this.cityWeather?.city.country
     bookmark.coord = this.cityWeather?.city.coord
+
+    this.store.dispatch(fromHomeActions.toggleBookmark({entity: bookmark}))
   }
 }

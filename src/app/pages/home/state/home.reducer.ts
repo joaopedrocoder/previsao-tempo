@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store"
 
 import * as fromHomeActions from './home.actions';
-import * as fromHomeSelectors from './home.selectors';
+// import * as fromHomeSelectors from './home.selectors';
 
 export interface HomeState {
   entity: any
@@ -17,6 +17,7 @@ export const homeInitialState: HomeState  = {
 
 const reducer = createReducer(
   homeInitialState,
+  on(fromHomeActions.clearHomeState, () => homeInitialState),
   on(fromHomeActions.loadCurrentyWeather, state => ({
     ...state,
     loading: true,
