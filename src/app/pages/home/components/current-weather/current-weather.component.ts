@@ -12,20 +12,21 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 })
 export class CurrentWeatherComponent {
   @Input() cityWeather: CityWeather | undefined
+  @Input() isFavorite: boolean | null = false
   @Output() toggleBookmark = new EventEmitter() 
 
   faStar = faStar
-  title = 'Add aos favoritos'
-  isFavorite = false
+
+  ngOnInit(): void {
+    console.log('CARD',this.isFavorite)
+  }
 
   get cityName(): string {
-  console.log('Mudou')
     return `${this.cityWeather?.city?.name} - ${this.cityWeather?.city?.country}`
   }
 
   onToggleBookmark(): void {
     this.isFavorite = !this.isFavorite
-    this.title = this.isFavorite ? 'Remover dos favoritos':'Add aos favoritos'
 
     this.toggleBookmark.emit()
   }

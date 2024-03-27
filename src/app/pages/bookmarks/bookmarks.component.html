@@ -1,1 +1,17 @@
-<p>bookmarks works!</p>
+<div>
+  <h2>Favoritos</h2>
+  @if (favorites.length > 0) {
+    <ul>
+      @for (favorite of favorites; track favorite) {
+        <li class="favorite-container">
+          <a href="#">
+            <h6>- {{favorite.name}} </h6>
+          </a>
+          <app-btn-remove (removeFavorite)="removeFavoriteFromList(favorite.id!)"></app-btn-remove>
+        </li>
+      }
+    </ul>
+  }@else {
+    <p>Não há favoritos na lista</p>
+  }
+</div>

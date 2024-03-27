@@ -3,7 +3,7 @@
     <span class="city-name">{{cityName}}</span>
     <span 
       [ngClass]="isFavorite ? 'icon-star-active':'icon-star-desactive'" 
-      [title]="title" 
+      [title]="!isFavorite ? 'Add aos favoritos':'Remover dos favoritos'" 
       (click)="onToggleBookmark()"
     >
       <fa-icon [icon]="faStar"></fa-icon> 

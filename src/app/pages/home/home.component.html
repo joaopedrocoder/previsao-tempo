@@ -26,6 +26,7 @@
     <div *ngIf="!(loading$ | async) && !(error$ | async)"> 
       <app-current-weather 
         [cityWeather]="cityWeather"
+        [isFavorite]="isCurrentyFavorite$ | async"
         (toggleBookmark)="onToggleBookmark()"
       ></app-current-weather>
     </div>
