@@ -4,8 +4,9 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromHomeActions from './state/home.actions';
 import * as fromHomeSelectors from './state/home.selectors';
+import * as fromBookmarksSelectors from '../bookmarks/state/bookmarks.selectors';
 import { CityWeather } from '../../shared/models/weather.mode';
-import { Observable, Subject, shareReplay, takeUntil } from 'rxjs';
+import { Observable, Subject, combineLatest, map, shareReplay, takeUntil } from 'rxjs';
 import { Bookmark } from '../../shared/models/bookmark.model';
 
 @Component({
@@ -15,9 +16,12 @@ import { Bookmark } from '../../shared/models/bookmark.model';
 })
 export class HomeComponent {
   searchControl: FormControl = new FormControl('', Validators.required)
+  cityWeather$: Observable<CityWeather> = new Observable()
   cityWeather: CityWeather | undefined = undefined
   loading$: Observable<boolean> = new Observable()
   error$: Observable<boolean> = new Observable()
+  isCurrentyFavorite$: Observable<boolean> = new Observable()
+  bookmarksList$: Observable<Bookmark[]> = new Observable()
 
   private componentDestroyed$ = new Subject()
 
@@ -26,14 +30,10 @@ export class HomeComponent {
   ){}
 
   ngOnInit(): void {
-    this.store
-      .pipe(
-        select(fromHomeSelectors.selectCurrentWeather),
-        takeUntil(this.componentDestroyed$)
-      ).subscribe({
-        next: res => this.cityWeather = res,
-        error: err => console.log(err)
-      })
+    this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather));
+    this.cityWeather$
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(res => this.cityWeather = res);
 
     this.loading$ = this.store.pipe(
       shareReplay(),
@@ -44,6 +44,18 @@ export class HomeComponent {
       shareReplay(),
       select(fromHomeSelectors.selectCurrentWeatherError)
     )
+
+    this.bookmarksList$ = this.store.pipe(select(fromBookmarksSelectors.selectBookmarksList))
+
+    this.isCurrentyFavorite$ = combineLatest([this.cityWeather$, this.bookmarksList$])
+      .pipe(
+        map(([current, bookmarksList]: any) => {
+          if (!!current) {
+            return bookmarksList.some((bookmark: Bookmark) => bookmark.id === current.city.id);
+          }
+          return false;
+        }),
+      );
   }
 
   ngOnDestroy(): void {
@@ -55,6 +67,7 @@ export class HomeComponent {
   searchWeather(): void {
     const query = this.searchControl.value
     this.store.dispatch(fromHomeActions.loadCurrentyWeather({query}))
+
     this.searchControl.reset()
   }
 
