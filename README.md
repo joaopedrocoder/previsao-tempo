@@ -1,27 +1,43 @@
-# PrevisaoDoTempo
+# 🌦️ App de Previsão do Tempo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+Este é um **aplicativo simples de previsão do tempo**, desenvolvido com o objetivo de consultar a temperatura atual de uma cidade informada pelo usuário.
 
-## Development server
+O app possui uma interface básica e intuitiva, permitindo que qualquer pessoa utilize sem dificuldade.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 📌 Funcionalidades
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 🔍 Campo de busca para digitar o nome da cidade  
+- 🔘 Botão para realizar a pesquisa  
+- 🌡️ Exibição da temperatura:
+  - Em **Kelvin**
+  - Em **Celsius**
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🖥️ Como funciona
 
-## Running unit tests
+1. O usuário digita o **nome da cidade** no campo de busca  
+2. Clica no botão **Pesquisar**  
+3. O aplicativo retorna a **temperatura atual** da cidade informada, exibindo os valores em Kelvin e Celsius  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🚀 Objetivo do projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Este projeto foi criado com fins **educacionais**, para praticar conceitos como:
 
-## Further help
+- Consumo de API  
+- Manipulação de dados  
+- Interação com o usuário  
+- Lógica básica de conversão de temperatura  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## 🧮 Conversão de temperatura
+
+A conversão de Kelvin para Celsius é feita da seguinte forma:
+
+```text
+°C = K - 273.15
